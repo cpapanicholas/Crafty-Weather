@@ -10,7 +10,7 @@ var searchCity = ""; // city being searched, updated upon searchByCity()
 // element variables
 // variables for:
 // search box section & children (search input, search button, search results box)
-// 
+// weather box section (all children will be generated in renderWeather())
 
 
 // FUNCTIONS
