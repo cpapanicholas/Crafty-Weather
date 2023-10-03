@@ -70,6 +70,22 @@ function searchByCity(event) {
 }
 
 function renderWeather() {
+        
+    const displayCity = document.getElementById("display-city");
+    const temperature = document.getElementById("temperature");
+    const weatherType = document.getElementById("weather-type");
+    const riseNSet = document.getElementById("sun-up-sun-down");
+
+    if (weatherData) {
+
+        displayCity.textContent = `Weather in ${weatherData.name}`;
+
+        const tempFahrenheit = weatherData.main.temp; 
+        temperature.textContent = 'Temperature: ${tempFahrenheit}°F';
+
+        // const description 
+
+    }
 
 
     // this function will render the weather on the right section
