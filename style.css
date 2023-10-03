@@ -1,12 +1,12 @@
-*:root{
-background-color: blanchedalmond;
+*:root {
+    background-color: blanchedalmond;
 }
 
-.header{
+.header {
     border-style: solid;
 }
 
-#h1{
+#h1 {
     display: flex;
     justify-content: center;
     margin-bottom: 3px;
@@ -16,7 +16,7 @@ background-color: blanchedalmond;
     margin-top: 5px;
 }
 
-#h3{
+#h3 {
     display: flex;
     justify-content: center;
     margin-bottom: 5px;
@@ -25,26 +25,23 @@ background-color: blanchedalmond;
     font-weight: bold;
 }
 
-#p1{
-    display: flex;
-    justify-content: center;
+#p1 {
+    text-align: center;
     margin-bottom: 5px;
     font-size: smaller;
     font-family: initial;
 }
 
-#footer-background{
-    size
+/* #footer-background {
 
-}
+} */
 
-.footer{
+.footer {
     border-style: solid;
 }
 
-#p2{
-    display: flex;
-    justify-content: center;
+#p2 {
+    text-align: center;
     font-size: medium;
     font-family: initial;
 }
