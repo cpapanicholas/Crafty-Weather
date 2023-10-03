@@ -6,7 +6,7 @@ var weatherApiUrl = "https://api.openweathermap.org/data/2.5/forecast";
 var breweryData;
 var weatherData;
 
-var weatherApiKey = ""; // add key here for testing DO NOT COMMIT NAKED API KEY (unless you want an email from gitprotector)
+var weatherApiKey = ""; // add key here for testing
 
 var searchCity = ""; // city being searched, updated upon searchByCity()
 
@@ -21,6 +21,7 @@ var searchButtonEl = document.querySelector("#search-button");
 // FUNCTIONS
 function init() {
     // this initial function will set up the page with a blank search result box and blank weather box
+    // will be made towards the end when localStorage functionality is applied
 }
 
 function searchByCity(event) {
@@ -40,7 +41,7 @@ function searchByCity(event) {
         })
         .then(function (data) {
             weatherData = data;
-            console.log(weatherData);
+            // console.log(weatherData);
         });
     // fetch from OpenBreweryDB
     fetch(breweryApiUrl + "?by_city=" + searchCity + "&per_page=3")
@@ -49,8 +50,13 @@ function searchByCity(event) {
         })
         .then(function (data) {
             breweryData = data;
-            console.log(breweryData);
+            // console.log(breweryData);
         });
+
+    // this is probably it for the 
+    // TODO: use breweryData and weatherData to render results & weather
+    renderWeather();
+    renderResults(); 
 }
 
 function renderWeather() {
