@@ -8,7 +8,7 @@ background-color: blanchedalmond;
 
 #h1{
     display: flex;
-    text-align: center;
+    justify-content: center;
     margin-bottom: 3px;
     font-size: xx-large;
     font-family: initial;
@@ -18,7 +18,7 @@ background-color: blanchedalmond;
 
 #h3{
     display: flex;
-    text-align: center;
+    justify-content: center;
     margin-bottom: 5px;
     font-size: large;
     font-family: initial;
@@ -27,10 +27,18 @@ background-color: blanchedalmond;
 
 #p1{
     display: flex;
-    text-align: center;
+    justify-content: center;
     margin-bottom: 5px;
     font-size: smaller;
     font-family: initial;
+}
+
+#footer-background{
+    width:100%;
+    height: 100%
+    
+
+
 }
 
 .footer{
@@ -39,15 +47,15 @@ background-color: blanchedalmond;
 
 #p2{
     display: flex;
-    text-align: center;
+    justify-content: center;
     font-size: medium;
     font-family: initial;
 }
 
-.beer-city{
+/* .beer-city{
 
 }
 
 .beer-button{
 
-}
+} */
