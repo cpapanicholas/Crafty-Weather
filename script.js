@@ -70,6 +70,8 @@ function searchByCity(event) {
 }
 
 function renderWeather() {
+
+
     // this function will render the weather on the right section
     // it will be called if searchByCity() recieves a valid city from the user's input
     // this will include: today's weather on the top box and forecast on bottom box
