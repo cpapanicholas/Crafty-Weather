@@ -16,9 +16,15 @@ var searchCity = ""; // city being searched, updated upon searchByCity()
 // FUNCTIONS
 function init() {
     // this initial function will set up the page with a blank search result box and blank weather box
+
+
+
 }
 
 function searchByCity() {
+
+
+    
     // this function will take the user input and attempt to search by city in OpenBreweryDB
     // if the city is invalid or has no results, it will inform the user in some way (TBD, just not using alert and stuff)
     // if it is valid, a list of breweries will be shown using renderResults() and the weather section will be updated using renderWeather()
