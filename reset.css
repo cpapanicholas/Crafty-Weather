@@ -1,4 +1,4 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -8,7 +8,7 @@ html {
   height: 100%;
 }
 
-body {
+/* body {
   min-height: 100%;
   line-height: 1;
   font-family: sans-serif;
@@ -16,9 +16,9 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-size: 100%;
-}
+} */
 
-input, select, option, optgroup, textarea, button,
+/* input, select, option, optgroup, textarea, button,
 pre, code {
   font-size: 100%;
   font-family: inherit;
@@ -26,4 +26,4 @@ pre, code {
 
 ol, ul {
   list-style: none;
-}
+} */ 
