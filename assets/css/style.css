@@ -1,0 +1,65 @@
+*:root {
+    background-color: blanchedalmond;
+}
+
+.head {
+    background-image: url("istockphoto-853285050-612x612.jpg");
+    border-style: solid;
+    height: 200px;
+    /* You must set a specified height */
+    background-position: bottom;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: cover;
+    /* Resize the background image to cover the entire container */
+}
+
+.header-text {
+    margin: 42px;
+}
+
+#h1 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3px;
+    font-size: xx-large;
+    font-family: initial;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+#h3 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+    font-size: large;
+    font-family: initial;
+    font-weight: bold;
+}
+
+#p1 {
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: smaller;
+    font-family: initial;
+}
+
+.footer {
+    background-color: blanchedalmond;
+    padding: 0px;
+}
+
+#p2 {
+    text-align: center;
+    font-size: medium;
+    font-family: initial;
+}
+
+/* .beer-city{
+
+}
+
+.beer-button{
+
+} */
