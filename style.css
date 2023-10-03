@@ -8,7 +8,7 @@ background-color: blanchedalmond;
 
 #h1{
     display: flex;
-    justify-content: center;
+    text-align: center;
     margin-bottom: 3px;
     font-size: xx-large;
     font-family: initial;
@@ -18,7 +18,7 @@ background-color: blanchedalmond;
 
 #h3{
     display: flex;
-    justify-content: center;
+    text-align: center;
     margin-bottom: 5px;
     font-size: large;
     font-family: initial;
@@ -27,7 +27,7 @@ background-color: blanchedalmond;
 
 #p1{
     display: flex;
-    justify-content: center;
+    text-align: center;
     margin-bottom: 5px;
     font-size: smaller;
     font-family: initial;
@@ -39,12 +39,10 @@ background-color: blanchedalmond;
 
 #p2{
     display: flex;
-    justify-content: center;
+    text-align: center;
     font-size: medium;
     font-family: initial;
 }
-
-
 
 .beer-city{
 
