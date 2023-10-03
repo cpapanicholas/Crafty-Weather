@@ -6,9 +6,9 @@ background-color: blanchedalmond;
     border-style: solid;
 }
 
-.h1{
+#h1{
     display: flex;
-    justify-content: center;
+    text-align: center;
     margin-bottom: 3px;
     font-size: xx-large;
     font-family: initial;
@@ -16,20 +16,31 @@ background-color: blanchedalmond;
     margin-top: 5px;
 }
 
-.h3{
+#h3{
     display: flex;
-    justify-content: center;
+    text-align: center;
     margin-bottom: 5px;
     font-size: large;
     font-family: initial;
     font-weight: bold;
 }
 
-.p1{
+#p1{
     display: flex;
-    justify-content: center;
+    text-align: center;
     margin-bottom: 5px;
     font-size: smaller;
+    font-family: initial;
+}
+
+.footer{
+    border-style: solid;
+}
+
+#p2{
+    display: flex;
+    text-align: center;
+    font-size: medium;
     font-family: initial;
 }
 
