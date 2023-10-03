@@ -3,7 +3,10 @@
 var breweryApiUrl = "https://api.openbrewerydb.org/v1/breweries";
 var weatherApiUrl = "https://api.openweathermap.org/data/2.5/forecast";
 
-var weatherApiKey = ""; // add key here for testing
+var breweryData;
+var weatherData;
+
+var weatherApiKey = ""; // add key here for testing DO NOT COMMIT NAKED API KEY (unless you want an email from gitprotector)
 
 var searchCity = ""; // city being searched, updated upon searchByCity()
 
@@ -36,7 +39,8 @@ function searchByCity(event) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
+            weatherData = data;
+            console.log(weatherData);
         });
     // fetch from OpenBreweryDB
     fetch(breweryApiUrl + "?by_city=" + searchCity + "&per_page=3")
@@ -44,7 +48,8 @@ function searchByCity(event) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
+            breweryData = data;
+            console.log(breweryData);
         });
 }
 
