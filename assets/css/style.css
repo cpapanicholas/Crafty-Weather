@@ -15,6 +15,10 @@
     /* Resize the background image to cover the entire container */
 }
 
+.header-text {
+    margin: 42px;
+}
+
 #h1 {
     display: flex;
     justify-content: center;
@@ -41,12 +45,9 @@
     font-family: initial;
 }
 
-
-
-} */
-
 .footer {
-    border-style: solid;
+    background-color: blanchedalmond;
+    padding: 0px;
 }
 
 #p2 {
