@@ -21,7 +21,6 @@ var searchButtonEl = document.querySelector("#search-button");
 // FUNCTIONS
 function init() {
     // this initial function will set up the page with a blank search result box and blank weather box
-    // will be made towards the end when localStorage functionality is applied
 }
 
 function searchByCity(event) {
