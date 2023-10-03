@@ -6,7 +6,7 @@ background-color: blanchedalmond;
     border-style: solid;
 }
 
-.h1{
+#h1{
     display: flex;
     justify-content: center;
     margin-bottom: 3px;
@@ -16,7 +16,7 @@ background-color: blanchedalmond;
     margin-top: 5px;
 }
 
-.h3{
+#h3{
     display: flex;
     justify-content: center;
     margin-bottom: 5px;
@@ -25,13 +25,26 @@ background-color: blanchedalmond;
     font-weight: bold;
 }
 
-.p1{
+#p1{
     display: flex;
     justify-content: center;
     margin-bottom: 5px;
     font-size: smaller;
     font-family: initial;
 }
+
+.footer{
+
+}
+
+#p2{
+    display: flex;
+    justify-content: center;
+    font-size: medium;
+    font-family: initial;
+}
+
+
 
 .beer-city{
 
