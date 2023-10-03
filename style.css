@@ -1,12 +1,21 @@
-*:root{
-background-color: blanchedalmond;
+*:root {
+    background-color: blanchedalmond;
 }
 
-.header{
+.head {
+    background-image: url("istockphoto-853285050-612x612.jpg");
     border-style: solid;
+    height: 200px;
+    /* You must set a specified height */
+    background-position: bottom;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: cover;
+    /* Resize the background image to cover the entire container */
 }
 
-#h1{
+#h1 {
     display: flex;
     justify-content: center;
     margin-bottom: 3px;
@@ -16,7 +25,7 @@ background-color: blanchedalmond;
     margin-top: 5px;
 }
 
-#h3{
+#h3 {
     display: flex;
     justify-content: center;
     margin-bottom: 5px;
@@ -25,29 +34,23 @@ background-color: blanchedalmond;
     font-weight: bold;
 }
 
-#p1{
-    display: flex;
-    justify-content: center;
+#p1 {
+    text-align: center;
     margin-bottom: 5px;
     font-size: smaller;
     font-family: initial;
 }
 
-#footer-background{
-    width:100%;
-    height: 100%
-    
 
 
-}
+} */
 
-.footer{
+.footer {
     border-style: solid;
 }
 
-#p2{
-    display: flex;
-    justify-content: center;
+#p2 {
+    text-align: center;
     font-size: medium;
     font-family: initial;
 }
