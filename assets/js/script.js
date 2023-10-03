@@ -46,7 +46,7 @@ function searchByCity(event) {
             weatherData = data;
             console.log(weatherData);
         });
-    
+
     // fetch from OpenBreweryDB
     fetch(breweryApiUrl + "?by_city=" + searchCity + "&per_page=3")
         .then(function (response) {
@@ -61,12 +61,12 @@ function searchByCity(event) {
             breweryData = data;
             console.log(breweryData);
         });
-    
+
 
     // TODO: add error messages to UI/UX if user input does not return results
     // TODO: use breweryData and weatherData to render results & weather in renderWeather() and renderResults()
     renderWeather();
-    renderResults(); 
+    renderResults();
 }
 
 function renderWeather() {
