@@ -1,6 +1,6 @@
 // GLOBAL SCOPE VARIABLES
 // base API URLs for OpenBreweryDB & OpenWeather
-var breweryApiUrl = "https://api.openbrewerydb.org/v1/breweries/";
+var breweryApiUrl = "https://api.openbrewerydb.org/v1/breweries";
 var weatherApiUrl = "https://api.openweathermap.org/data/2.5/forecast";
 
 var weatherApiKey = ""; // add key here for testing
@@ -11,6 +11,8 @@ var searchCity = ""; // city being searched, updated upon searchByCity()
 // variables for:
 // search box section & children (search input, search button, search results box)
 // weather box section (all children will be generated in renderWeather())
+var searchInputEl = document.querySelector("#search-input");
+var searchButtonEl = document.querySelector("#search-button");
 
 
 // FUNCTIONS
@@ -23,6 +25,16 @@ function searchByCity() {
     // if the city is invalid or has no results, it will inform the user in some way (TBD, just not using alert and stuff)
     // if it is valid, a list of breweries will be shown using renderResults() and the weather section will be updated using renderWeather()
     // set searchCity to the userinput for clarity
+    searchCity = searchInputEl.textContent.split(' ').join('_').toLowerCase(); // replace spaces with underscores for api url
+    console.log(searchCity);
+    // fetch (breweryApiUrl + "?by_city=" + searchCity + "&per_page=3")
+    fetch ("https://api.openbrewerydb.org/v1/breweries?by_city=san_diego&per_page=3")
+        .then (function (response) {
+            return response.json();
+        })
+        .then (function (data) {
+            console.log(data);
+        });
 }
 
 function renderWeather() {
@@ -37,3 +49,4 @@ function renderResults() {
 
 // eventlisteners
 // eventlistener for search button, call searchByCity()
+searchButtonEl.addEventListener("click", searchByCity);
