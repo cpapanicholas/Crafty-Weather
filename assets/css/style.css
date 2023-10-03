@@ -15,7 +15,7 @@
     /* Resize the background image to cover the entire container */
 }
 
-.header-text{
+.header-text {
     margin: 42px;
 }
 
@@ -45,12 +45,9 @@
     font-family: initial;
 }
 
-/* #footer-background {
-
-} */
-
 .footer {
-    border-style: solid;
+    background-color: blanchedalmond;
+    padding: 0px;
 }
 
 #p2 {
