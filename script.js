@@ -40,7 +40,7 @@ function searchByCity(event) {
         })
         .then (function (data) {
             console.log(data);
-        })
+        });
     // fetch (breweryApiUrl + "?by_city=" + searchCity + "&per_page=3")
     fetch ("https://api.openbrewerydb.org/v1/breweries?by_city=san_diego&per_page=3")
         .then (function (response) {
