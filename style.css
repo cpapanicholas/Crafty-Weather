@@ -15,6 +15,10 @@
     /* Resize the background image to cover the entire container */
 }
 
+.header-text{
+    margin: 42px;
+}
+
 #h1 {
     display: flex;
     justify-content: center;
