@@ -46,7 +46,7 @@ function searchByCity(event) {
             weatherData = data;
             console.log(weatherData);
         });
-
+    
     // fetch from OpenBreweryDB
     fetch(breweryApiUrl + "?by_city=" + searchCity + "&per_page=3")
         .then(function (response) {
@@ -61,15 +61,31 @@ function searchByCity(event) {
             breweryData = data;
             console.log(breweryData);
         });
-
+    
 
     // TODO: add error messages to UI/UX if user input does not return results
     // TODO: use breweryData and weatherData to render results & weather in renderWeather() and renderResults()
     renderWeather();
-    renderResults();
+    renderResults(); 
 }
 
 function renderWeather() {
+
+    const displayCity = document.getElementById("display-city");
+    const temperature = document.getElementById("temperature");
+    const weatherType = document.getElementById("weather-type");
+    const riseNSet = document.getElementById("sun-up-sun-down");
+
+    if (weatherData) {
+
+        displayCity.textContent = `Weather in ${weatherData.name}`;
+
+        const tempFahrenheit = weatherData.main.temp; 
+        temperature.textContent = 'Temperature: ${tempFahrenheit}°F';
+
+        // const description 
+
+    }
 
 
     // this function will render the weather on the right section
