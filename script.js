@@ -34,26 +34,37 @@ function searchByCity(event) {
     console.log(searchCity);
 
     // fetch from OpenWeather
-    fetch (weatherApiUrl + "?q=" + searchCity + "&appid=" + weatherApiKey)
+    fetch(weatherApiUrl + "?q=" + searchCity + "&appid=" + weatherApiKey)
         .then(function (response) {
+            if (response === 404) {
+                // add error message to page here
+                console.log("bad input - city weather data not found");
+            }
             return response.json();
         })
         .then(function (data) {
             weatherData = data;
-            // console.log(weatherData);
+            console.log(weatherData);
         });
+    
     // fetch from OpenBreweryDB
     fetch(breweryApiUrl + "?by_city=" + searchCity + "&per_page=3")
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
+            if (data.length === 0) {
+                // add error message to page here
+                console.log("bad input - no breweries in city");
+                return;
+            }
             breweryData = data;
-            // console.log(breweryData);
+            console.log(breweryData);
         });
+    
 
-    // this is probably it for the 
-    // TODO: use breweryData and weatherData to render results & weather
+    // TODO: add error messages to UI/UX if user input does not return results
+    // TODO: use breweryData and weatherData to render results & weather in renderWeather() and renderResults()
     renderWeather();
     renderResults(); 
 }
