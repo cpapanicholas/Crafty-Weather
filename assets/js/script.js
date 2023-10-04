@@ -6,7 +6,7 @@ var weatherApiUrl = "https://api.openweathermap.org/data/2.5/forecast";
 var breweryData;
 var weatherData;
 
-var weatherApiKey = ""; // add key here for testing
+var weatherApiKey = "dd00af83e89105441c591b1fdc8aa109"; // add key here for testing
 
 var searchCity = ""; // city being searched, updated upon searchByCity()
 
@@ -35,7 +35,7 @@ function searchByCity(event) {
     console.log(searchCity);
 
     // fetch from OpenWeather
-    fetch(weatherApiUrl + "?q=" + searchCity + "&appid=" + weatherApiKey)
+    fetch(weatherApiUrl + "?q=" + searchCity + "&appid=" + weatherApiKey) 
         .then(function (response) {
             if (response === 404) {
                 // add error message to page here
@@ -70,29 +70,62 @@ function searchByCity(event) {
     renderWeather();
 }
 
-function renderWeather() {
+    function renderWeather() {
+        const displayCity = document.getElementById("display-city");
+        const currentTemperature = document.getElementById("current-temperature"); 
+        const weatherType = document.getElementById("weather-type");
+        const riseNSet = document.getElementById("sun-up-sun-down");
+        const forecastList = document.getElementById("forecast-list");
 
-    const displayCity = document.getElementById("display-city");
-    const temperature = document.getElementById("temperature");
-    const weatherType = document.getElementById("weather-type");
-    const riseNSet = document.getElementById("sun-up-sun-down");
-
-    if (weatherData) {
-
-        displayCity.textContent = `Weather in ${weatherData.name}`;
-
-        const tempFahrenheit = weatherData.main.temp;
-        temperature.textContent = 'Temperature: ${tempFahrenheit}°F';
-
-        // const description 
-
+        if (weatherData) {
+            // Display city name
+            displayCity.textContent = `Weather in ${weatherData.name}`;
+    
+            // Display temperature in Fahrenheit
+            const tempKelvin = weatherData.main.temp; 
+            const tempFahrenheit = Math.round((tempKelvin - 273.15) * 9/5 + 32); 
+            currentTemperature.textContent = `Temperature: ${tempFahrenheit}°F`; 
+    
+            // Display weather type
+            const description = weatherData.weather[0].description;
+            weatherType.textContent = `Weather: ${description}`;
+    
+            // Display sunrise and sunset times (convert UNIX timestamps to HH:mm format)
+            const sunriseTimestamp = weatherData.sys.sunrise * 1000; 
+            const sunsetTimestamp = weatherData.sys.sunset * 1000; 
+            const sunriseTime = new Date(sunriseTimestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const sunsetTime = new Date(sunsetTimestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            riseNSet.textContent = `Sunrise: ${sunriseTime}, Sunset: ${sunsetTime}`;
+    
+            // Display 5-day weather forecast
+            if (weatherData.list && weatherData.list.length >= 5) {
+                forecastList.innerHTML = ""; 
+    
+                for (let i = 0; i < 5; i++) {
+                    const forecastItem = document.createElement("li");
+                    const forecastDate = new Date(weatherData.list[i].dt * 1000); 
+                    const forecastTempKelvin = weatherData.list[i].main.temp; 
+                    const forecastTempFahrenheit = Math.round((forecastTempKelvin - 273.15) * 9/5 + 32); 
+                    const forecastDescription = weatherData.list[i].weather[0].description;
+                    forecastItem.textContent = `${forecastDate.toLocaleDateString()}: ${forecastTempFahrenheit}°F, ${forecastDescription}`;
+                    forecastList.appendChild(forecastItem);
+                }
+            } else {
+                forecastList.textContent = "Forecast data not available.";
+            }
+        } else {
+            // Handle case when weather data is not available
+            displayCity.textContent = "Weather data not available.";
+            currentTemperature.textContent = "";
+            weatherType.textContent = "";
+            riseNSet.textContent = "";
+            forecastList.textContent = "";
+        }
     }
-
-
     // this function will render the weather on the right section
     // it will be called if searchByCity() recieves a valid city from the user's input
     // this will include: today's weather on the top box and forecast on bottom box
-}
+
 
 function renderResults() {
     // this function will render the search results in the left section search results div
