@@ -98,14 +98,13 @@ function renderResults() {
     // this function will render the search results in the left section search results div
     for (i = 0; i < breweryData.length; i++) {
         var liEl = document.createElement("li");
-        liEl.innerHTML = breweryData[i].name + "Type: "
-            + breweryData[i].brewery_type + "Phone: " + breweryData[i].phone + "<a href=" + breweryData[i].website_url + ">Website</a>";
-            liEl.classList.add("box");
+        liEl.innerHTML = "| " + breweryData[i].name + " | Type: " + breweryData[i].brewery_type + " | Phone: " + breweryData[i].phone + " | <a href=" + breweryData[i].website_url + ">Website</a> |";
+        liEl.classList.add("box");
         resultsListEl.appendChild(liEl);
     }
 }
 
 
-    // eventlisteners
-    // eventlistener for search button, call searchByCity()
-    searchButtonEl.addEventListener("click", searchByCity);
+// eventlisteners
+// eventlistener for search button, call searchByCity()
+searchButtonEl.addEventListener("click", searchByCity);
