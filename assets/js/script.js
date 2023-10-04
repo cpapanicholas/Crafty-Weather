@@ -44,7 +44,7 @@ function searchByCity(event) {
         })
         .then(function (data) {
             weatherData = data;
-            console.log(weatherData);
+            renderWeather(weatherData)
         });
 
     // fetch from OpenBreweryDB
@@ -65,33 +65,33 @@ function searchByCity(event) {
 
     // TODO: add error messages to UI/UX if user input does not return results
     // TODO: use breweryData and weatherData to render results & weather in renderWeather() and renderResults()
-    renderWeather();
+    //renderWeather();
     renderResults();
 }
 
-    function renderWeather() {
+    function renderWeather(weatherData) {
         const displayCity = document.getElementById("display-city");
         const currentTemperature = document.getElementById("current-temperature"); 
         const weatherType = document.getElementById("weather-type");
         const riseNSet = document.getElementById("sun-up-sun-down");
         const forecastList = document.getElementById("forecast-list");
-
+        console.log(weatherData);
         if (weatherData) {
             // Display city name
             displayCity.textContent = `Weather in ${weatherData.name}`;
     
             // Display temperature in Fahrenheit
-            const tempKelvin = weatherData.main.temp; 
+            const tempKelvin = weatherData.list[0].main.temp; 
             const tempFahrenheit = Math.round((tempKelvin - 273.15) * 9/5 + 32); 
             currentTemperature.textContent = `Temperature: ${tempFahrenheit}°F`; 
     
             // Display weather type
-            const description = weatherData.weather[0].description;
+            const description = weatherData.list[0].weather.description;
             weatherType.textContent = `Weather: ${description}`;
     
             // Display sunrise and sunset times (convert UNIX timestamps to HH:mm format)
-            const sunriseTimestamp = weatherData.sys.sunrise * 1000; 
-            const sunsetTimestamp = weatherData.sys.sunset * 1000; 
+            const sunriseTimestamp = weatherData.city.sunrise * 1000; 
+            const sunsetTimestamp = weatherData.city.sunset * 1000; 
             const sunriseTime = new Date(sunriseTimestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             const sunsetTime = new Date(sunsetTimestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             riseNSet.textContent = `Sunrise: ${sunriseTime}, Sunset: ${sunsetTime}`;
