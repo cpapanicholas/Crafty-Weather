@@ -16,6 +16,7 @@ var searchCity = ""; // city being searched, updated upon searchByCity()
 // weather box section (all children will be generated in renderWeather())
 var searchInputEl = document.querySelector("#search-input");
 var searchButtonEl = document.querySelector("#search-button");
+var resultsListEl = document.querySelector("#results-list");
 
 
 // FUNCTIONS
@@ -60,17 +61,17 @@ function searchByCity(event) {
             }
             breweryData = data;
             console.log(breweryData);
+            renderResults();
         });
 
 
     // TODO: add error messages to UI/UX if user input does not return results
     // TODO: use breweryData and weatherData to render results & weather in renderWeather() and renderResults()
     renderWeather();
-    renderResults();
 }
 
 function renderWeather() {
-        
+
     const displayCity = document.getElementById("display-city");
     const temperature = document.getElementById("temperature");
     const weatherType = document.getElementById("weather-type");
@@ -80,7 +81,7 @@ function renderWeather() {
 
         displayCity.textContent = `Weather in ${weatherData.name}`;
 
-        const tempFahrenheit = weatherData.main.temp; 
+        const tempFahrenheit = weatherData.main.temp;
         temperature.textContent = 'Temperature: ${tempFahrenheit}°F';
 
         // const description 
@@ -95,8 +96,16 @@ function renderWeather() {
 
 function renderResults() {
     // this function will render the search results in the left section search results div
+    for (i = 0; i < breweryData.length; i++) {
+        var liEl = document.createElement("li");
+        liEl.innerHTML = breweryData[i].name + "Type: "
+            + breweryData[i].brewery_type + "Phone: " + breweryData[i].phone + "<a href=" + breweryData[i].website_url + ">Website</a>";
+            liEl.classList.add("box");
+        resultsListEl.appendChild(liEl);
+    }
 }
 
-// eventlisteners
-// eventlistener for search button, call searchByCity()
-searchButtonEl.addEventListener("click", searchByCity);
+
+    // eventlisteners
+    // eventlistener for search button, call searchByCity()
+    searchButtonEl.addEventListener("click", searchByCity);
