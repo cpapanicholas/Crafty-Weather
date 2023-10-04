@@ -53,3 +53,13 @@
     font-size: medium;
     font-family: initial;
 }
+
+#search-results-container {
+    height: 60vh;
+}
+
+#search-results {
+    height: 100%;
+    overflow:scroll;
+    overflow-x:hidden;
+}

@@ -23,14 +23,18 @@
 
     <main class="columns m-1">
         <section id="search-box" class="column is-half">
-            <div class="box has-background-warning field has-addons">
+            <div class="box p-3 has-background-warning field has-addons">
                 <input class="input" id="search-input" type="text" placeholder="Enter City Name">
                 <div class="control">
                     <a class="button is-info" id="search-button">Search</a>
                 </div>
             </div>
-            <div class="box has-background-warning">
-
+            <div class="box p-3 has-background-warning" id="search-results-container">
+                <div class="box p-0" id="search-results">
+                    <ul class="p-2" id="results-list">
+                        <!-- APPEND RESULT ELEMENTS HERE -->
+                    </ul>
+                </div>
             </div>
         </section>
 
