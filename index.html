@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <header class="head">
+    <header class="head mb-3">
         <div class="header-text">
 
             <h1 id="h1">Crafty Weather</h1>
@@ -21,24 +21,24 @@
 
     </header>
 
-    <main>
-        <section id="search-box">
-            <form id="search-form" class="beer-city">
-                <input type="text" placeholder="Enter City Here" id="search-input">
-                <button id="search-button" class="beer-button">Search</button>
-            </form>
-            <div id="search-results" class="beer-results">
-                <ul id="results-list">
-
-
-                </ul>
-
+    <main class="columns m-1">
+        <section id="search-box" class="column is-half">
+            <div class="box p-3 has-background-warning field has-addons">
+                <input class="input" id="search-input" type="text" placeholder="Enter City Name">
+                <div class="control">
+                    <a class="button is-info" id="search-button">Search</a>
+                </div>
             </div>
-
-
+            <div class="box p-3 has-background-warning" id="search-results-container">
+                <div class="box p-0" id="search-results">
+                    <ul class="p-2" id="results-list">
+                            <!-- APPEND RESULT ELEMENTS HERE -->
+                    </ul>
+                </div>
+            </div>
         </section>
 
-        <section id="weather-box">
+        <section id="weather-box" class="column is-half">
             <div id="display-city">
 
             </div>
