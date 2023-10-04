@@ -6,7 +6,7 @@ var weatherApiUrl = "https://api.openweathermap.org/data/2.5/forecast";
 var breweryData;
 var weatherData;
 
-var weatherApiKey = ""; // add key here for testing
+var weatherApiKey = "dd00af83e89105441c591b1fdc8aa109"; // add key here for testing
 
 var searchCity = ""; // city being searched, updated upon searchByCity()
 
@@ -34,7 +34,7 @@ function searchByCity(event) {
     console.log(searchCity);
 
     // fetch from OpenWeather
-    fetch(weatherApiUrl + "?q=" + searchCity + "&appid=" + weatherApiKey)
+    fetch(weatherApiUrl + "?q=" + searchCity + "&appid=" + weatherApiKey) 
         .then(function (response) {
             if (response === 404) {
                 // add error message to page here
