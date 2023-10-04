@@ -63,15 +63,17 @@ function searchByCity(event) {
             console.log(breweryData);
             renderResults();
         });
+        renderWeather();
+    }
 
 
     // TODO: add error messages to UI/UX if user input does not return results
     // TODO: use breweryData and weatherData to render results & weather in renderWeather() and renderResults()
 
-    //renderWeather();
-    renderResults();
 
-    renderWeather();
+  
+
+     
 
 
     function renderWeather(weatherData) {
