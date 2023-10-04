@@ -18,6 +18,9 @@ var searchInputEl = document.querySelector("#search-input");
 var searchButtonEl = document.querySelector("#search-button");
 var resultsListEl = document.querySelector("#results-list");
 
+// Add timezone plugins to day.js
+dayjs.extend(window.dayjs_plugin_utc);
+dayjs.extend(window.dayjs_plugin_timezone);
 
 // FUNCTIONS
 function init() {
@@ -32,7 +35,7 @@ function searchByCity(event) {
     event.preventDefault(); // prevents CORS errors, somehow
 
     searchCity = searchInputEl.value.split(' ').join('_').toLowerCase(); // replace spaces with underscores for api url
-    console.log(searchCity);
+    // console.log(searchCity);
 
     // fetch from OpenWeather
     fetch(weatherApiUrl + "?q=" + searchCity + "&appid=" + weatherApiKey) 
@@ -63,15 +66,13 @@ function searchByCity(event) {
             console.log(breweryData);
             renderResults();
         });
+        renderWeather();
+    }
 
 
     // TODO: add error messages to UI/UX if user input does not return results
     // TODO: use breweryData and weatherData to render results & weather in renderWeather() and renderResults()
 
-    //renderWeather();
-    renderResults();
-
-    renderWeather();
 
 
     function renderWeather(weatherData) {
@@ -83,7 +84,7 @@ function searchByCity(event) {
         console.log(weatherData);
         if (weatherData) {
             // Display city name
-            displayCity.textContent = `Weather in ${weatherData.name}`;
+            displayCity.textContent = `Weather in ${weatherData.city.name}`;
     
             // Display temperature in Fahrenheit
             const tempKelvin = weatherData.list[0].main.temp; 
@@ -92,7 +93,7 @@ function searchByCity(event) {
     
             // Display weather type
             const description = weatherData.list[0].weather.description;
-            weatherType.textContent = `Weather: ${description}`;
+            weatherType.textContent = `Weather: ${weatherData.list[0].weather[0].description}`;
     
             // Display sunrise and sunset times (convert UNIX timestamps to HH:mm format)
             const sunriseTimestamp = weatherData.city.sunrise * 1000; 
@@ -105,13 +106,13 @@ function searchByCity(event) {
             if (weatherData.list && weatherData.list.length >= 5) {
                 forecastList.innerHTML = ""; 
     
-                for (let i = 0; i < 5; i++) {
-                    const forecastItem = document.createElement("li");
-                    const forecastDate = new Date(weatherData.list[i].dt * 1000); 
+                for (let i = 0; i < weatherData.list.length; i+=8) {
+                    const forecastItem = document.createElement("li"); 
+                    const forecastDate = weatherData.list[i].dt_txt; 
                     const forecastTempKelvin = weatherData.list[i].main.temp; 
                     const forecastTempFahrenheit = Math.round((forecastTempKelvin - 273.15) * 9/5 + 32); 
                     const forecastDescription = weatherData.list[i].weather[0].description;
-                    forecastItem.textContent = `${forecastDate.toLocaleDateString()}: ${forecastTempFahrenheit}°F, ${forecastDescription}`;
+                    forecastItem.textContent = `${dayjs(forecastDate).format('M/D/YYYY')}: ${forecastTempFahrenheit}°F, ${forecastDescription}`;
                     forecastList.appendChild(forecastItem);
                 }
             } else {
