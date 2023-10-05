@@ -16,22 +16,20 @@
 }
 
 .header-text {
-    margin: 42px;
+    margin: auto;
 }
 
 #h1 {
     text-align: center;
-    margin-bottom: 3px;
-    font-size: 50px;
+    font-size: 60px;
     font-family: initial;
     font-weight: bold;
-    margin-top: 5px;
 }
 
 #h3 {
     text-align: center;
     margin-bottom: 5px;
-    font-size: large;
+    font-size: x-large;
     font-family: initial;
     font-weight: bold;
 }
@@ -39,7 +37,7 @@
 #p1 {
     text-align: center;
     margin-bottom: 5px;
-    font-size: smaller;
+    font-size: large;
     font-family: initial;
 }
 
@@ -60,14 +58,15 @@
 
 #search-results {
     height: 100%;
-    overflow:scroll;
-    overflow-x:hidden;
-}
-.box{
-    text-transform: capitalize; 
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
-#current-header{
+.box {
+    text-transform: capitalize;
+}
+
+#current-header {
     text-decoration: underline;
     text-align: center;
     font-size: xx-large;
@@ -75,7 +74,7 @@
     font-weight: bold;
 }
 
-#forecast-header{
+#forecast-header {
     text-decoration: underline;
     text-align: center;
     font-size: xx-large;
@@ -83,14 +82,14 @@
     font-weight: bold;
 }
 
-p{
+p {
     text-align: center;
     font-size: larger;
     font-family: initial;
     font-weight: bold;
 }
 
-li{
+li {
     text-align: center;
     font-size: larger;
     font-family: initial;
