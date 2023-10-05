@@ -19,7 +19,7 @@ const searchInputEl = document.querySelector("#search-input");
 const searchButtonEl = document.querySelector("#search-button");
 const resultsListEl = document.querySelector("#results-list");
 const displayCityForecastEl = document.getElementById("display-city-forecast");
-const savedListEl = document.querySelector("#saved-list");
+const savedListEl = document.querySelector("#saved-list"); // list in modal
 
 // Add timezone plugins to day.js
 dayjs.extend(window.dayjs_plugin_utc);
@@ -50,14 +50,13 @@ function searchByCity(event) {
     }
 
     searchCity = searchInputEl.value.split(' ').join('_').toLowerCase(); // replace spaces with underscores for api url
-    // console.log(searchCity);
 
     // fetch from OpenWeather
     fetch(weatherApiUrl + "?q=" + searchCity + "&appid=" + weatherApiKey)
         .then(function (response) {
             if (response === 404) {
                 // add error message to page here
-                console.log("bad input - city weather data not found");
+                // console.log("bad input - city weather data not found");
             }
             return response.json();
         })
@@ -77,11 +76,10 @@ function searchByCity(event) {
                 liEl.innerHTML = "There are no results for " + searchCity + ". Please check your spelling or try another city.";
                 liEl.classList.add("box");
                 resultsListEl.appendChild(liEl);
-                console.log("bad input - no breweries in city");
+                // console.log("bad input - no breweries in city");
                 return;
             }
             breweryData = data;
-            console.log(breweryData);
             renderResults();
         });
     renderWeather();
@@ -96,7 +94,6 @@ function renderWeather(weatherData) {
     const weatherType = document.getElementById("weather-type");
     const riseNSet = document.getElementById("sun-up-sun-down");
     const forecastList = document.getElementById("forecast-list");
-    console.log(weatherData);
     if (weatherData) {
         // Display city name
         displayCity.textContent = `${weatherData.city.name}`;
@@ -160,8 +157,6 @@ function renderResults() {
 function deleteResult(event) {
     if (event.target.classList.contains("delete")) {
         // i can't explain how funny this next line is with words
-        console.log(event.target.parentNode.innerHTML.length);
-        console.log(event.target.parentNode.innerHTML.substring(0, event.target.parentNode.innerHTML.length - 41) + "<button class=\"button is-small is-success\">Save</button>");
         savedBreweries.splice(savedBreweries.indexOf(event.target.parentNode.innerHTML.substring(0, event.target.parentNode.innerHTML.length - 41) + " |<button class=\"button is-small is-success\">Save</button>"), 1);
         localStorage.setItem("breweries", JSON.stringify(savedBreweries));
         event.target.parentNode.remove();
@@ -176,7 +171,6 @@ function saveResult(event) {
             localStorage.setItem("breweries", JSON.stringify(savedBreweries));
             renderSaved();
         }
-        console.log(savedBreweries);
     }
 }
 
