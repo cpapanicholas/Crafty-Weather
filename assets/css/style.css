@@ -68,15 +68,31 @@
 }
 
 #current-header{
+    text-decoration: underline;
     text-align: center;
-    font-size: large;
+    font-size: xx-large;
     font-family: initial;
     font-weight: bold;
 }
 
 #forecast-header{
+    text-decoration: underline;
     text-align: center;
-    font-size: large;
+    font-size: xx-large;
+    font-family: initial;
+    font-weight: bold;
+}
+
+p{
+    text-align: center;
+    font-size: larger;
+    font-family: initial;
+    font-weight: bold;
+}
+
+li{
+    text-align: center;
+    font-size: larger;
     font-family: initial;
     font-weight: bold;
 }

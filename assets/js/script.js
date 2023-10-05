@@ -74,7 +74,6 @@ function searchByCity(event) {
     // TODO: use breweryData and weatherData to render results & weather in renderWeather() and renderResults()
 
 
-
     function renderWeather(weatherData) {
         const displayCity = document.getElementById("display-city");
         const currentTemperature = document.getElementById("current-temperature"); 
