@@ -27,7 +27,7 @@
                 <div class="control">
                     <a class="button is-info" id="search-button">Search</a>
                 </div>
-                <a class="button is-info is-success" id="view-saved">View Saved</a>
+                <a class="button is-info is-success js-modal-trigger" data-target="saved-modal" id="view-saved">View Saved</a>
             </div>
             <div class="box p-3 has-background-warning" id="search-results-container">
                 <div class="box p-0" id="search-results">
@@ -58,6 +58,19 @@
             </div>
         </section>
     </main>
+
+    <div class="modal" id="saved-modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Modal title</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <!-- Content ... -->
+            </section>
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="footer-text">
