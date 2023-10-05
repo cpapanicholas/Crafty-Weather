@@ -10,6 +10,9 @@
 * [Requirements for Project 1](#requirements-for-project-1)
 * [Credits](#Credits)
 
+SS:
+![Alt text](image.png)
+
 ## LIVELINK
 https://cpapanicholas.github.io/Crafty-Weather/
 
@@ -46,7 +49,8 @@ Crafty-Weather is a brewery look up and a weather application for your city of c
 Once Crafty-Weather has been loaded up, start off by entering in your desired city and click enter.  
 From there you will see a plethera of breweries(or not, if you choose a small city) along with that city's current weather and a 5 day forecast listed below.  
 The application provides you with the listed brewery's websites and phone numbers.  
-The weather will provide a few stats like sunrise and sunset, along with the weather type.
+The weather will provide a few stats like sunrise and sunset, along with the weather type.  
+If you want to save a brewery all you need to do is click the save button and when you go back to that page from your computer you can view your saved breweries on the View Saved button.
 
 ## Credits
 
@@ -87,9 +91,3 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-
-
-
-
-
-SS:
