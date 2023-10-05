@@ -34,6 +34,11 @@ function searchByCity(event) {
     // set searchCity to the userinput for clarity
     event.preventDefault(); // prevents CORS errors, somehow
 
+    // clear brewery results
+    while (resultsListEl.firstChild) {
+        resultsListEl.removeChild(resultsListEl.firstChild);
+    }
+
     searchCity = searchInputEl.value.split(' ').join('_').toLowerCase(); // replace spaces with underscores for api url
     // console.log(searchCity);
 
@@ -134,11 +139,6 @@ function renderWeather(weatherData) {
 
 function renderResults() {
     // this function will render the search results in the left section search results div
-
-    // clear results first
-    while (resultsListEl.firstChild) {
-        resultsListEl.removeChild(resultsListEl.firstChild);
-      }
 
     for (i = 0; i < breweryData.length; i++) {
         var liEl = document.createElement("li");
