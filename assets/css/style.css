@@ -66,3 +66,17 @@
 .box{
     text-transform: capitalize; 
 }
+
+#current-header{
+    text-align: center;
+    font-size: large;
+    font-family: initial;
+    font-weight: bold;
+}
+
+#forecast-header{
+    text-align: center;
+    font-size: large;
+    font-family: initial;
+    font-weight: bold;
+}
