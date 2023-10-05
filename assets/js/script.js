@@ -63,7 +63,10 @@ function searchByCity(event) {
         })
         .then(function (data) {
             if (data.length === 0) {
-                // add error message to page here
+                var liEl = document.createElement("li");
+                liEl.innerHTML = "There are no results for " + searchCity + ". Please check your spelling or try another city.";
+                liEl.classList.add("box");
+                resultsListEl.appendChild(liEl);
                 console.log("bad input - no breweries in city");
                 return;
             }
