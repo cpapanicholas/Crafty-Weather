@@ -34,6 +34,11 @@ function searchByCity(event) {
     // set searchCity to the userinput for clarity
     event.preventDefault(); // prevents CORS errors, somehow
 
+    // clear brewery results
+    while (resultsListEl.firstChild) {
+        resultsListEl.removeChild(resultsListEl.firstChild);
+    }
+
     searchCity = searchInputEl.value.split(' ').join('_').toLowerCase(); // replace spaces with underscores for api url
     // console.log(searchCity);
 
@@ -58,7 +63,10 @@ function searchByCity(event) {
         })
         .then(function (data) {
             if (data.length === 0) {
-                // add error message to page here
+                var liEl = document.createElement("li");
+                liEl.innerHTML = "There are no results for " + searchCity + ". Please check your spelling or try another city.";
+                liEl.classList.add("box");
+                resultsListEl.appendChild(liEl);
                 console.log("bad input - no breweries in city");
                 return;
             }
@@ -134,11 +142,6 @@ function renderWeather(weatherData) {
 
 function renderResults() {
     // this function will render the search results in the left section search results div
-
-    // clear results first
-    while (resultsListEl.firstChild) {
-        resultsListEl.removeChild(resultsListEl.firstChild);
-      }
 
     for (i = 0; i < breweryData.length; i++) {
         var liEl = document.createElement("li");
