@@ -17,7 +17,7 @@ var searchCity = ""; // city being searched, updated upon searchByCity()
 var searchInputEl = document.querySelector("#search-input");
 var searchButtonEl = document.querySelector("#search-button");
 var resultsListEl = document.querySelector("#results-list");
-
+var displayCityForecastEl = document.getElementById("display-city-forecast")
 // Add timezone plugins to day.js
 dayjs.extend(window.dayjs_plugin_utc);
 dayjs.extend(window.dayjs_plugin_timezone);
@@ -92,7 +92,7 @@ function renderWeather(weatherData) {
     console.log(weatherData);
     if (weatherData) {
         // Display city name
-        displayCity.textContent = `Weather in ${weatherData.city.name}`;
+        displayCity.textContent = `${weatherData.city.name}`;
 
         // Display temperature in Fahrenheit
         const tempKelvin = weatherData.list[0].main.temp;
@@ -112,7 +112,9 @@ function renderWeather(weatherData) {
 
         // Display 5-day weather forecast
         if (weatherData.list && weatherData.list.length >= 5) {
+            displayCityForecastEl.textContent = weatherData.city.name
             forecastList.innerHTML = "";
+          
 
             for (let i = 0; i < weatherData.list.length; i += 8) {
                 const forecastItem = document.createElement("li");
