@@ -23,15 +23,16 @@ dayjs.extend(window.dayjs_plugin_utc);
 dayjs.extend(window.dayjs_plugin_timezone);
 
 // FUNCTIONS
+// this initial function will set up the page with a blank search result box and blank weather box
 function init() {
-    // this initial function will set up the page with a blank search result box and blank weather box
+    
 }
 
+// this function will take the user input and attempt to search by city in OpenBreweryDB
+// if the city is invalid or has no results, it will inform the user in some way (TBD, just not using alert and stuff)
+// if it is valid, a list of breweries will be shown using renderResults() and the weather section will be updated using renderWeather()
+// set searchCity to the userinput for clarity
 function searchByCity(event) {
-    // this function will take the user input and attempt to search by city in OpenBreweryDB
-    // if the city is invalid or has no results, it will inform the user in some way (TBD, just not using alert and stuff)
-    // if it is valid, a list of breweries will be shown using renderResults() and the weather section will be updated using renderWeather()
-    // set searchCity to the userinput for clarity
     event.preventDefault(); // prevents CORS errors, somehow
 
     // clear brewery results
@@ -77,12 +78,9 @@ function searchByCity(event) {
     renderWeather();
 }
 
-
-// TODO: add error messages to UI/UX if user input does not return results
-// TODO: use breweryData and weatherData to render results & weather in renderWeather() and renderResults()
-
-
-
+// this function will render the weather on the right section
+// it will be called if searchByCity() recieves a valid city from the user's input
+// this will include: today's weather on the top box and forecast on bottom box
 function renderWeather(weatherData) {
     const displayCity = document.getElementById("display-city");
     const currentTemperature = document.getElementById("current-temperature");
@@ -114,7 +112,7 @@ function renderWeather(weatherData) {
         if (weatherData.list && weatherData.list.length >= 5) {
             displayCityForecastEl.textContent = weatherData.city.name
             forecastList.innerHTML = "";
-          
+
 
             for (let i = 0; i < weatherData.list.length; i += 8) {
                 const forecastItem = document.createElement("li");
@@ -137,14 +135,9 @@ function renderWeather(weatherData) {
         forecastList.textContent = "";
     }
 }
-// this function will render the weather on the right section
-// it will be called if searchByCity() recieves a valid city from the user's input
-// this will include: today's weather on the top box and forecast on bottom box
 
-
+// this function will render the search results in the left section search results div
 function renderResults() {
-    // this function will render the search results in the left section search results div
-
     for (i = 0; i < breweryData.length; i++) {
         var liEl = document.createElement("li");
         liEl.innerHTML = "| " + breweryData[i].name + " | Type: " + breweryData[i].brewery_type + " | Phone: " + breweryData[i].phone + " | <a href=" + breweryData[i].website_url + ">Website</a> |";
@@ -152,7 +145,6 @@ function renderResults() {
         resultsListEl.appendChild(liEl);
     }
 }
-
 
 // eventlisteners
 // eventlistener for search button, call searchByCity()
