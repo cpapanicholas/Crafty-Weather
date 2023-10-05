@@ -81,7 +81,7 @@ function renderWeather(weatherData) {
     const riseNSet = document.getElementById("sun-up-sun-down");
     const forecastList = document.getElementById("forecast-list");
     console.log(weatherData);
-    if (weatherData) {
+    if (weatherData) 
         // Display city name
         displayCity.textContent = `Weather in ${weatherData.city.name}`;
 
@@ -100,7 +100,7 @@ function renderWeather(weatherData) {
         const sunriseTime = new Date(sunriseTimestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         const sunsetTime = new Date(sunsetTimestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         riseNSet.textContent = `Sunrise: ${sunriseTime}, Sunset: ${sunsetTime}`;
-
+}
         // Display 5-day weather forecast
         if (weatherData.list && weatherData.list.length >= 5) {
             forecastList.innerHTML = "";
@@ -114,7 +114,7 @@ function renderWeather(weatherData) {
                 forecastItem.textContent = `${dayjs(forecastDate).format('M/D/YYYY')}: ${forecastTempFahrenheit}°F, ${forecastDescription}`;
                 forecastList.appendChild(forecastItem);
             }
-        } else {
+        } else 
             forecastList.textContent = "Forecast data not available.";
 
             function renderWeather(weatherData) {
