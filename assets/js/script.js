@@ -34,8 +34,6 @@ function searchByCity(event) {
     // set searchCity to the userinput for clarity
     event.preventDefault(); // prevents CORS errors, somehow
 
-    
-
     searchCity = searchInputEl.value.split(' ').join('_').toLowerCase(); // replace spaces with underscores for api url
     // console.log(searchCity);
 
@@ -54,7 +52,7 @@ function searchByCity(event) {
         });
 
     // fetch from OpenBreweryDB
-    fetch(breweryApiUrl + "?by_city=" + searchCity + "&per_page=3")
+    fetch(breweryApiUrl + "?by_city=" + searchCity + "&per_page=500")
         .then(function (response) {
             return response.json();
         })
@@ -136,6 +134,12 @@ function renderWeather(weatherData) {
 
 function renderResults() {
     // this function will render the search results in the left section search results div
+
+    // clear results first
+    while (resultsListEl.firstChild) {
+        resultsListEl.removeChild(resultsListEl.firstChild);
+      }
+
     for (i = 0; i < breweryData.length; i++) {
         var liEl = document.createElement("li");
         liEl.innerHTML = "| " + breweryData[i].name + " | Type: " + breweryData[i].brewery_type + " | Phone: " + breweryData[i].phone + " | <a href=" + breweryData[i].website_url + ">Website</a> |";
