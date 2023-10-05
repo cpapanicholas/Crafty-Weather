@@ -1,23 +1,25 @@
 // GLOBAL SCOPE VARIABLES
 // base API URLs for OpenBreweryDB & OpenWeather
-var breweryApiUrl = "https://api.openbrewerydb.org/v1/breweries";
-var weatherApiUrl = "https://api.openweathermap.org/data/2.5/forecast";
+const breweryApiUrl = "https://api.openbrewerydb.org/v1/breweries";
+const weatherApiUrl = "https://api.openweathermap.org/data/2.5/forecast";
 
 var breweryData;
 var weatherData;
 
-var weatherApiKey = "dd00af83e89105441c591b1fdc8aa109"; // add key here for testing
+const weatherApiKey = "dd00af83e89105441c591b1fdc8aa109"; // add key here for testing
 
 var searchCity = ""; // city being searched, updated upon searchByCity()
+var savedBreweries = [];
 
 // element variables
 // variables for:
 // search box section & children (search input, search button, search results box)
 // weather box section (all children will be generated in renderWeather())
-var searchInputEl = document.querySelector("#search-input");
-var searchButtonEl = document.querySelector("#search-button");
-var resultsListEl = document.querySelector("#results-list");
-var displayCityForecastEl = document.getElementById("display-city-forecast")
+const searchInputEl = document.querySelector("#search-input");
+const searchButtonEl = document.querySelector("#search-button");
+const resultsListEl = document.querySelector("#results-list");
+const displayCityForecastEl = document.getElementById("display-city-forecast");
+const savedListEl = document.getElementById("#saved-list");
 // Add timezone plugins to day.js
 dayjs.extend(window.dayjs_plugin_utc);
 dayjs.extend(window.dayjs_plugin_timezone);
@@ -25,7 +27,11 @@ dayjs.extend(window.dayjs_plugin_timezone);
 // FUNCTIONS
 // this initial function will set up the page with a blank search result box and blank weather box
 function init() {
-    
+    savedBreweries = JSON.parse(localStorage.getItem("breweries"));
+    // set savedBreweries to localStorage value and then render onto modal
+    savedBreweries.forEach(element => {
+        
+    });
 }
 
 // this function will take the user input and attempt to search by city in OpenBreweryDB
@@ -140,9 +146,25 @@ function renderWeather(weatherData) {
 function renderResults() {
     for (i = 0; i < breweryData.length; i++) {
         var liEl = document.createElement("li");
-        liEl.innerHTML = "| " + breweryData[i].name + " | Type: " + breweryData[i].brewery_type + " | Phone: " + breweryData[i].phone + " | <a href=" + breweryData[i].website_url + ">Website</a> |";
+        liEl.innerHTML = "| " + breweryData[i].name + " | Type: " + breweryData[i].brewery_type + " | Phone: " + breweryData[i].phone + " | <a href=" + breweryData[i].website_url + ">Website</a> |" +
+            "<button class=\"button is-small is-success\">Save</button>"; // yeah this is pretty funny but it works
         liEl.classList.add("box");
         resultsListEl.appendChild(liEl);
+    }
+}
+
+function deleteResult(event) {
+    var toDelete = event.target;
+}
+
+function saveResult(event) {
+    if (event.target.classList.contains("button")) {
+        var toSave = event.target.parentNode.innerHTML;
+        if (savedBreweries.indexOf(toSave) === -1) {
+            savedBreweries.push(toSave);
+            localStorage.setItem("breweries", JSON.stringify(savedBreweries));
+        }
+        console.log(savedBreweries);
     }
 }
 
@@ -150,45 +172,52 @@ function renderResults() {
 // eventlistener for search button, call searchByCity()
 searchButtonEl.addEventListener("click", searchByCity);
 
+// event delegation for saving and deleting results to/from localstorage
+resultsListEl.addEventListener("click", saveResult);
+// savedListEl.addEventListener("click", deleteResult);
+
+// evenlistener for modal functionality FROM BULMA
 document.addEventListener('DOMContentLoaded', () => {
     // Functions to open and close a modal
     function openModal($el) {
-      $el.classList.add('is-active');
+        $el.classList.add('is-active');
     }
-  
+
     function closeModal($el) {
-      $el.classList.remove('is-active');
+        $el.classList.remove('is-active');
     }
-  
+
     function closeAllModals() {
-      (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-        closeModal($modal);
-      });
+        (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+            closeModal($modal);
+        });
     }
-  
+
     // Add a click event on buttons to open a specific modal
     (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-      const modal = $trigger.dataset.target;
-      const $target = document.getElementById(modal);
-  
-      $trigger.addEventListener('click', () => {
-        openModal($target);
-      });
+        const modal = $trigger.dataset.target;
+        const $target = document.getElementById(modal);
+
+        $trigger.addEventListener('click', () => {
+            openModal($target);
+        });
     });
-  
+
     // Add a click event on various child elements to close the parent modal
     (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-      const $target = $close.closest('.modal');
-  
-      $close.addEventListener('click', () => {
-        closeModal($target);
-      });
+        const $target = $close.closest('.modal');
+
+        $close.addEventListener('click', () => {
+            closeModal($target);
+        });
     });
-  
+
     // Add a keyboard event to close all modals
     document.addEventListener('keydown', (event) => {
-      if (event.code === 'Escape') {
-        closeAllModals();
-      }
+        if (event.code === 'Escape') {
+            closeAllModals();
+        }
     });
-  });
+});
+
+init();
