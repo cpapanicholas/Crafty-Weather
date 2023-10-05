@@ -19,7 +19,8 @@ const searchInputEl = document.querySelector("#search-input");
 const searchButtonEl = document.querySelector("#search-button");
 const resultsListEl = document.querySelector("#results-list");
 const displayCityForecastEl = document.getElementById("display-city-forecast");
-const savedListEl = document.getElementById("#saved-list");
+const savedListEl = document.querySelector("#saved-list");
+
 // Add timezone plugins to day.js
 dayjs.extend(window.dayjs_plugin_utc);
 dayjs.extend(window.dayjs_plugin_timezone);
@@ -27,11 +28,13 @@ dayjs.extend(window.dayjs_plugin_timezone);
 // FUNCTIONS
 // this initial function will set up the page with a blank search result box and blank weather box
 function init() {
-    savedBreweries = JSON.parse(localStorage.getItem("breweries"));
+    if (!localStorage.getItem("breweries")) {
+        localStorage.setItem("breweries", "");
+    } else {
+        savedBreweries = JSON.parse(localStorage.getItem("breweries"));
+    }
     // set savedBreweries to localStorage value and then render onto modal
-    savedBreweries.forEach(element => {
-        
-    });
+    renderSaved();
 }
 
 // this function will take the user input and attempt to search by city in OpenBreweryDB
@@ -153,8 +156,16 @@ function renderResults() {
     }
 }
 
+// this deletes saved results from the page & localstorage
 function deleteResult(event) {
-    var toDelete = event.target;
+    if (event.target.classList.contains("delete")) {
+        // i can't explain how funny this next line is with words
+        console.log(event.target.parentNode.innerHTML.length);
+        console.log(event.target.parentNode.innerHTML.substring(0, event.target.parentNode.innerHTML.length - 41) + "<button class=\"button is-small is-success\">Save</button>");
+        savedBreweries.splice(savedBreweries.indexOf(event.target.parentNode.innerHTML.substring(0, event.target.parentNode.innerHTML.length - 41) + " |<button class=\"button is-small is-success\">Save</button>"), 1);
+        localStorage.setItem("breweries", JSON.stringify(savedBreweries));
+        event.target.parentNode.remove();
+    }
 }
 
 function saveResult(event) {
@@ -163,9 +174,24 @@ function saveResult(event) {
         if (savedBreweries.indexOf(toSave) === -1) {
             savedBreweries.push(toSave);
             localStorage.setItem("breweries", JSON.stringify(savedBreweries));
+            renderSaved();
         }
         console.log(savedBreweries);
     }
+}
+
+function renderSaved() {
+    while (savedListEl.firstChild) {
+        savedListEl.removeChild(savedListEl.firstChild);
+    }
+
+    savedBreweries.forEach(element => {
+        var liEl = document.createElement("li");
+        // ok, now this is like really hilarious. to remove the save button and add a delete button, i literally chop off the HTML for the save button (which i know is 58 characters) and then just add the HTML for a delete button (there is definitely a better way of doing this, but this is funny)
+        liEl.innerHTML = element.substring(0, element.length - 58) + "<button class=\"delete is-small\"></button>";
+        liEl.classList.add("box");
+        savedListEl.appendChild(liEl);
+    });
 }
 
 // eventlisteners
@@ -174,7 +200,7 @@ searchButtonEl.addEventListener("click", searchByCity);
 
 // event delegation for saving and deleting results to/from localstorage
 resultsListEl.addEventListener("click", saveResult);
-// savedListEl.addEventListener("click", deleteResult);
+savedListEl.addEventListener("click", deleteResult);
 
 // evenlistener for modal functionality FROM BULMA
 document.addEventListener('DOMContentLoaded', () => {
